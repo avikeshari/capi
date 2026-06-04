@@ -1,9 +1,10 @@
 import React from 'react'
 import Childc from './Childc.jsx'
 
-const Childb = ({ message }) => {
+const Childb = ({/* message */}) => {
   return (
-    <Childc message={message} />
+    //<Childc message={message} />
+    <Childc />
   )
 }
 
