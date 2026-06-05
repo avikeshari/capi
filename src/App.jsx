@@ -1,9 +1,10 @@
-import { DragDropProvider } from '@dnd-kit/react';
+//import { DragDropProvider } from '@dnd-kit/react';
 import React from 'react'
-import SortableItems from './SortableItems';
-import { isSortable } from '@dnd-kit/react/sortable';
+/*import SortableItems from './SortableItems';
+import { isSortable } from '@dnd-kit/react/sortable';*/
+import { Reactions } from './components/Reactions';
 
-const App = () => {
+/*const App = () => {
 
     const [items, setItems] = React.useState([
         { id: 1, name: 'Item 1' },
@@ -39,6 +40,23 @@ const App = () => {
         </ul>
     </DragDropProvider>
   </div>
+}*/
+
+const reducer = (state, action) => {
+    if (action.type === 'LIKE') {
+        return state + 1;
+    }
+};
+
+export const ReactionsContext = React.createContext();
+
+const App = () => {
+
+    const [likes, setLikes] = React.useReducer(reducer, 0);
+    
+    return <ReactionsContext.Provider value={{ likes, setLikes }}>
+        <Reactions />
+    </ReactionsContext.Provider>
 }
 
 export default App
