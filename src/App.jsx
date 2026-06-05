@@ -1,21 +1,44 @@
+import { DragDropProvider } from '@dnd-kit/react';
 import React from 'react'
-import Childa from './components/Childa.jsx'
-
-//1. Create context
-export const MessageContext = React.createContext();
+import SortableItems from './SortableItems';
+import { isSortable } from '@dnd-kit/react/sortable';
 
 const App = () => {
-  //parent component which has the data
-  const message = "Hello from App component";
 
-  return (
-    //<Childa message={message} />
-    <MessageContext.Provider value={message}>
-      <div>
-        <Childa />
-      </div>
-    </MessageContext.Provider>
-  )
+    const [items, setItems] = React.useState([
+        { id: 1, name: 'Item 1' },
+        { id: 2, name: 'Item 2' },
+        { id: 3, name: 'Item 3' },
+        { id: 4, name: 'Item 4' },
+        { id: 5, name: 'Item 5' }
+    ]);
+
+  return <div>
+    <h1>List of Items</h1>
+    <DragDropProvider onDragEnd={(event) => {
+        if (event.canceled) return;
+        const { source } = event.operation;
+        if (isSortable(source)) {
+            const { initialIndex, index } = source;
+            if (initialIndex !== index) {
+                setItems((items) => {
+                    const newItems = [...items];
+                    const [movedItem] = newItems.splice(initialIndex, 1);
+                    newItems.splice(index, 0, movedItem);
+                    return newItems;
+                });
+            }
+        }
+    }}>
+        <ul>
+            {items.map((item , index) => (
+                <SortableItems key={item.id} id={item.id} index={index}>
+                    {item.name}
+                </SortableItems>
+            ))}
+        </ul>
+    </DragDropProvider>
+  </div>
 }
 
 export default App
