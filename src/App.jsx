@@ -3,7 +3,9 @@ import React from 'react'
 /*import SortableItems from './SortableItems';
 import { isSortable } from '@dnd-kit/react/sortable';*/
 //import { Reactions } from './components/Reactions';
-import { ReactionsContext } from './contexts/ReactionsStore.jsx';
+//import { ReactionsContext } from './contexts/ReactionsStore.jsx';
+import { useDispatch , useSelector } from 'react-redux';
+import { selectLikes, setLikes } from './redux/features/reactionSlice.js';
 
 /*const App = () => {
 
@@ -51,19 +53,28 @@ import { ReactionsContext } from './contexts/ReactionsStore.jsx';
 
 //export const ReactionsContext = React.createContext();
 
-const App = () => {
+/*const App = () => {
 
     //const [likes, setLikes] = React.useReducer(reducer, 0);
     
-    /*return <ReactionsContext.Provider value={{ likes, setLikes }}>
+    return <ReactionsContext.Provider value={{ likes, setLikes }}>
         <Reactions />
     </ReactionsContext.Provider>*/
 
-    const { likes, setLikes } = React.useContext(ReactionsContext);
+    /*const { likes, setLikes } = React.useContext(ReactionsContext);
 
     return <div>
         <h1>Likes: {likes}</h1>
         <button onClick={() => setLikes({ type: 'LIKE' })}>Like</button>
+    </div>
+}*/
+
+const App = () => {
+    const likes = useSelector(selectLikes);
+    const dispatch = useDispatch();
+    return <div>
+        <h1>Likes: { likes }</h1>
+        <button onClick={() => dispatch(setLikes())}>Like</button>
     </div>
 }
 

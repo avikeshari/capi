@@ -1,9 +1,11 @@
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import ReactionsStore from './contexts/ReactionsStore.jsx';
+import { Provider } from 'react-redux'
+//import ReactionsStore from './contexts/ReactionsStore.jsx';
+import store from './redux/app/store.js';
 
 createRoot(document.getElementById('root')).render(
-  <ReactionsStore>
+  <Provider store={store}>
     <App />
-  </ReactionsStore>
+  </Provider>
 )
