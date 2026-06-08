@@ -5,7 +5,7 @@ import { isSortable } from '@dnd-kit/react/sortable';*/
 //import { Reactions } from './components/Reactions';
 //import { ReactionsContext } from './contexts/ReactionsStore.jsx';
 import { useDispatch , useSelector } from 'react-redux';
-import { selectLikes, setLikes } from './redux/features/reactionSlice.js';
+import { selectLikes, setLikes ,setDislikes } from './redux/features/reactionSlice.js';
 
 /*const App = () => {
 
@@ -75,6 +75,8 @@ const App = () => {
     return <div>
         <h1>Likes: { likes }</h1>
         <button onClick={() => dispatch(setLikes())}>Like</button>
+        &nbsp;
+        <button onClick={() => dispatch(setDislikes())}>Dislike</button>
     </div>
 }
 
