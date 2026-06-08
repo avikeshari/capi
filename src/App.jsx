@@ -2,7 +2,8 @@
 import React from 'react'
 /*import SortableItems from './SortableItems';
 import { isSortable } from '@dnd-kit/react/sortable';*/
-import { Reactions } from './components/Reactions';
+//import { Reactions } from './components/Reactions';
+import { ReactionsContext } from './contexts/ReactionsStore.jsx';
 
 /*const App = () => {
 
@@ -42,21 +43,28 @@ import { Reactions } from './components/Reactions';
   </div>
 }*/
 
-const reducer = (state, action) => {
+/*const reducer = (state, action) => {
     if (action.type === 'LIKE') {
         return state + 1;
     }
-};
+};*/
 
-export const ReactionsContext = React.createContext();
+//export const ReactionsContext = React.createContext();
 
 const App = () => {
 
-    const [likes, setLikes] = React.useReducer(reducer, 0);
+    //const [likes, setLikes] = React.useReducer(reducer, 0);
     
-    return <ReactionsContext.Provider value={{ likes, setLikes }}>
+    /*return <ReactionsContext.Provider value={{ likes, setLikes }}>
         <Reactions />
-    </ReactionsContext.Provider>
+    </ReactionsContext.Provider>*/
+
+    const { likes, setLikes } = React.useContext(ReactionsContext);
+
+    return <div>
+        <h1>Likes: {likes}</h1>
+        <button onClick={() => setLikes({ type: 'LIKE' })}>Like</button>
+    </div>
 }
 
 export default App
