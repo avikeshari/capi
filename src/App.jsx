@@ -11,6 +11,8 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import HomeWrapper from './wrappers/HomeWrapper';
 import { createBrowserRouter, RouterProvider } from 'react-router';
+import { Provider } from 'react-redux';
+import store from './redux/app/store.js';
 
 /*const App = () => {
 
@@ -108,7 +110,9 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />
+  return <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 }
 
 export default App
