@@ -1,11 +1,15 @@
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import { Provider } from 'react-redux'
+//import { Provider } from 'react-redux'
 //import ReactionsStore from './contexts/ReactionsStore.jsx';
-import store from './redux/app/store.js';
+//import store from './redux/app/store.js';
 
-createRoot(document.getElementById('root')).render(
+/*createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <App />
   </Provider>
+)*/
+
+createRoot(document.getElementById('root')).render(
+  <App />
 )

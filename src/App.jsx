@@ -1,11 +1,16 @@
 //import { DragDropProvider } from '@dnd-kit/react';
 import React from 'react'
-/*import SortableItems from './SortableItems';
-import { isSortable } from '@dnd-kit/react/sortable';*/
+//import SortableItems from './SortableItems';
+//import { isSortable } from '@dnd-kit/react/sortable';
 //import { Reactions } from './components/Reactions';
 //import { ReactionsContext } from './contexts/ReactionsStore.jsx';
-import { useDispatch , useSelector } from 'react-redux';
-import { selectLikes, selectDislikes , setLikes ,setDislikes } from './redux/features/reactionSlice.js';
+//import { useDispatch , useSelector } from 'react-redux';
+//import { selectLikes, selectDislikes , setLikes ,setDislikes } from './redux/features/reactionSlice.js';
+import Home from './pages/Home';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import HomeWrapper from './wrappers/HomeWrapper';
+import { createBrowserRouter, RouterProvider } from 'react-router';
 
 /*const App = () => {
 
@@ -67,7 +72,7 @@ import { selectLikes, selectDislikes , setLikes ,setDislikes } from './redux/fea
         <h1>Likes: {likes}</h1>
         <button onClick={() => setLikes({ type: 'LIKE' })}>Like</button>
     </div>
-}*/
+}
 
 const App = () => {
     const likes = useSelector(selectLikes);
@@ -79,6 +84,31 @@ const App = () => {
         &nbsp;
         <button onClick={() => dispatch(setDislikes())}>Dislike</button>
     </div>
+}*/
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <HomeWrapper />,
+        children: [
+            {
+                path: '',
+                element: <Home />
+            },
+            {
+                path: '/register',
+                element: <Register />
+            },
+            {
+                path: '/login',
+                element: <Login />
+            }
+        ]
+    }
+]);
+
+const App = () => {
+  return <RouterProvider router={router} />
 }
 
 export default App
