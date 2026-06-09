@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectEmail, selectPassword } from '../redux/features/loginSlice.js';
 import { setEmail, setPassword } from '../redux/features/loginSlice.js';
 import { useNavigate } from 'react-router';
+import Dashboard from './Dashboard';
 
 const Login = () => {
   const email = useSelector(selectEmail);
@@ -16,7 +17,7 @@ const Login = () => {
     alert(`Logged in with Email: ${email}`);
     dispatch(setEmail(''));
     dispatch(setPassword(''));
-    navigate('/');
+    navigate('/dashboard');
   }
 
   return <div>
