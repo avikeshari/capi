@@ -2,13 +2,14 @@ import React from 'react'
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectNotes, setNotes } from '../redux/features/noteSlice.js';
+import instance from '../instances/instance.js';
 
 const Notes = () => {
     //const [notes, setNotes] = React.useState([]);
     const notes = useSelector(selectNotes);
     const dispatch = useDispatch();
     React.useEffect(() => {
-        axios.get('https://6a29c98df59cb8f65f1d9d24.mockapi.io/Notes')
+        instance.get('/Notes')
         .then(response => {
             //setNotes(response.data);
             dispatch(setNotes(response.data));
