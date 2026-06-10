@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 //import reactionReducer from '../features/reactionSlice';
 import registerReducer from '../features/registerSlice';
 import loginReducer from '../features/loginSlice';
+import noteReducer from '../features/noteSlice';
 
 /*const store = configureStore({
   reducer: {
@@ -12,7 +13,8 @@ import loginReducer from '../features/loginSlice';
 const store = configureStore({
     reducer: {
         register: registerReducer,
-        login: loginReducer
+        login: loginReducer,
+        note: noteReducer
     }
 });
 
