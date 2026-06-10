@@ -16,6 +16,7 @@ import store from './redux/app/store.js';
 import Dashboard from './pages/Dashboard';
 import DashboardWrapper from './wrappers/DashboardWrapper';
 import Notes from './pages/Notes.jsx';
+import Note from './pages/Note.jsx';
 
 /*const App = () => {
 
@@ -121,6 +122,10 @@ const router = createBrowserRouter([
                     {
                         path: '',
                         element: <Notes />
+                    },
+                    {
+                        path: 'notes/:id',
+                        element: <Note />
                     }
                 ]
             }
