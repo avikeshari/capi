@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 import store from './redux/app/store.js';
 import Dashboard from './pages/Dashboard';
 import DashboardWrapper from './wrappers/DashboardWrapper';
+import Notes from './pages/Notes.jsx';
 
 /*const App = () => {
 
@@ -115,7 +116,13 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <Dashboard />
+                element: <Dashboard />,
+                children: [
+                    {
+                        path: '',
+                        element: <Notes />
+                    }
+                ]
             }
         ]
     }
