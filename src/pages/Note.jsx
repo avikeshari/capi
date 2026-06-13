@@ -2,12 +2,12 @@ import React from 'react'
 import { useParams , useNavigate } from 'react-router';
 import instance from '../instances/instance.js';
 import { useSelector , useDispatch } from 'react-redux';
-import { selectNote , setNote } from '../redux/features/noteSlice.js'
+//import { selectNote , setNote } from '../redux/features/noteSlice.js'
 import noteServices from '../services/noteServices.js';
 
 const Note = () => {
     const { id } = useParams();
-    const note = useSelector(selectNote);
+    //const note = useSelector(selectNote);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
