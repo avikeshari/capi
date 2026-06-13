@@ -4,20 +4,33 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectNotes, setNotes } from '../redux/features/noteSlice.js';
 import instance from '../instances/instance.js';
 import { Link } from 'react-router';
+import noteServices from '../services/noteServices.js';
 
 const Notes = () => {
     //const [notes, setNotes] = React.useState([]);
     const notes = useSelector(selectNotes);
     const dispatch = useDispatch();
+
+    const fetchNotes = async () => {
+        try {
+            const response = await noteServices.getNotes();
+            dispatch(setNotes(response.data));
+        }
+        catch (error) {
+            dispatch(setNotes([]));
+        }
+    }
+
     React.useEffect(() => {
-        instance.get('/Notes')
+        /*instance.get('/Notes')
         .then(response => {
             //setNotes(response.data);
             dispatch(setNotes(response.data));
         })
         .catch(error => {
             console.error('Error fetching notes:', error);
-        });
+        });*/
+        fetchNotes();
     }, []);
     return <div>
         <h3>Notes</h3>
