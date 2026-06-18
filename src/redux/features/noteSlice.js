@@ -16,13 +16,30 @@ export const fetchNotes = createAsyncThunk (
     }
 )
 
+export const fetchNoteByID = createAsyncThunk(
+    'note/fetchNoteByID',
+    async (id,thunkAPI) => {
+        try {
+            const response = await noteServices.getNote(id);
+            return response.data;
+        }
+        catch (error) {
+            return thunkAPI.rejectWithValue (
+                error.response?.data?.message || 'Failed to fetch note'
+            )
+        }
+    }
+)
+
 export const noteSlice = createSlice({
     name: 'note',
     initialState: {
         notes: [],
-        //note: null,
+        note: null,
         loadingNotes: false,
-        notesError: null
+        notesError: null,
+        loadingNote: false,
+        noteError: null
     },
     /*reducers: {
         setNotes: (state, action) => {
@@ -46,6 +63,19 @@ export const noteSlice = createSlice({
             state.notes = [];
             state.notesError = action.payload || 'Failed to fetch notes';
         })
+        .addCase(fetchNoteByID.pending, (state) => {
+            state.loadingNote = true;
+            state.noteError = null;
+        })
+        .addCase(fetchNoteByID.fulfilled, (state,action) => {
+            state.loadingNote = false;
+            state.note = action.payload;
+        })
+        .addCase(fetchNoteByID.rejected, (state,action) => {
+            state.loadingNote = false;
+            state.note = null;
+            state.noteError = action.payload || "Failed to fetch note";
+        })
    }
 });
 
@@ -55,5 +85,8 @@ export const selectNotes = (state) => state.note.notes;
 //export const selectNote = (state) => state.note.note;
 export const selectLoadingNotes = (state) => state.note.loadingNotes;
 export const selectNotesError = (state) => state.note.notesError;
+export const selectNote = (state) => state.note.note;
+export const selectLoadingNote = (state) => state.note.loadingNote;
+export const selectNoteError = (state) => state.note.noteError;
 
 export default noteSlice.reducer;
